@@ -35,9 +35,9 @@ _global_script_classes=[ {
 "path": "res://entities/BaseResourceFactory.gd"
 }, {
 "base": "Node",
-"class": "BaseResourcesState",
+"class": "BuildingFactory",
 "language": "GDScript",
-"path": "res://autoload/states/BaseResourcesState.gd"
+"path": "res://objects/BuildingFactory.gd"
 }, {
 "base": "Node",
 "class": "DictionaryHelper",
@@ -79,6 +79,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://ui/MainMenu.gd"
 }, {
+"base": "Area2D",
+"class": "PlaceSelector",
+"language": "GDScript",
+"path": "res://objects/selectors/PlaceSelector.gd"
+}, {
 "base": "Droid",
 "class": "PrimitiveDroid",
 "language": "GDScript",
@@ -105,11 +110,6 @@ _global_script_classes=[ {
 "path": "res://objects/droids/primitive/TractorBeam.gd"
 }, {
 "base": "Node",
-"class": "UIState",
-"language": "GDScript",
-"path": "res://autoload/states/UIState.gd"
-}, {
-"base": "Node",
 "class": "Waypoint",
 "language": "GDScript",
 "path": "res://objects/droids/Waypoint.gd"
@@ -130,7 +130,7 @@ _global_script_class_icons={
 "BaseDroidModule": "",
 "BaseResourceComponent": "",
 "BaseResourceFactory": "",
-"BaseResourcesState": "",
+"BuildingFactory": "",
 "DictionaryHelper": "",
 "Droid": "",
 "DroidSelection": "",
@@ -139,12 +139,12 @@ _global_script_class_icons={
 "IceWateredAsteroid": "",
 "InputHelper": "",
 "MainMenu": "",
+"PlaceSelector": "",
 "PrimitiveDroid": "",
 "RoverActions": "",
 "SaveLoadHelper": "",
 "ShortRangeSensor": "",
 "TractorBeam": "",
-"UIState": "",
 "Waypoint": "",
 "WaypointFactory": "",
 "WaypointsManager": ""
@@ -152,7 +152,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Moon Colony Defender"
+config/name="Moon Defence"
 run/main_scene="res://levels/ScenesRoot.tscn"
 config/icon="res://icon.png"
 

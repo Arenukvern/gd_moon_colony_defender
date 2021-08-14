@@ -19,4 +19,3 @@ Button/styles/normal = SubResource( 2 )
 Button/styles/pressed = SubResource( 3 )
 Label/fonts/normal = ExtResource( 1 )
 Label/styles/normal = null
-

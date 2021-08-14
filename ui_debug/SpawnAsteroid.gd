@@ -1,8 +1,8 @@
 extends HBoxContainer
 
 onready var root: Node = $'.'
-export var is_spawn_enabled: bool= false setget set_is_spawn_enabled
-onready var checkButton: CheckButton = get_node('SpawnAsteroidMouseClickCheckButton')
+export var is_spawn_enabled: bool = false setget set_is_spawn_enabled
+onready var checkButton: CheckButton = $'SpawnAsteroidMouseClickCheckButton'
 
 func set_is_spawn_enabled(isEnable:bool)->void:
 	is_spawn_enabled = isEnable
@@ -12,7 +12,7 @@ func _ready() -> void:
 	self.is_spawn_enabled = false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if self.is_spawn_enabled:
+	if is_spawn_enabled:
 		var isLeftClick = InputHelper.isLeftClick(event)
 		if isLeftClick:
 			AsteroidsState.add_asteroid(get_global_mouse_position())

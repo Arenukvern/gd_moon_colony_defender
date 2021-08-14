@@ -9,7 +9,7 @@ Devlogs =>> [Instagram](https://www.instagram.com/explore/tags/moondefence/​)
 |
 [Youtube](https://www.youtube.com/playlist?list=PLz4tcEeusgWKefgGiy6DXV_-fcagc2VlM​/​)
 |
-[Itch.io]()
+[Itch.io](https://arenukvern.itch.io/moon-defence)
 
 ---
 

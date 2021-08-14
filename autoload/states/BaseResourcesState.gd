@@ -1,7 +1,5 @@
 extends Node
 
-class_name BaseResourcesState
-
 enum ComponentsTypes {
 	TITANIUM = 0,
 	GLASS = 1,

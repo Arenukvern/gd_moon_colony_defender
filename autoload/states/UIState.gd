@@ -1,7 +1,5 @@
 extends Node
 
-class_name UIState
-
 signal debug_menu_state_updated(enabled)
 const signal_name_debug_menu_state_updated: = 'debug_menu_state_updated'
 const signal_func_name_debug_menu_state_updated: = "_on_%s" % signal_name_debug_menu_state_updated
@@ -13,13 +11,14 @@ const signal_func_name_highscore_updated: = "_on_%s" % signal_name_highscore_upd
 onready var saveLoadHelper = load('res://helpers/SaveLoadHelper.gd').new()
 
 func getSave():
-    var save_dict = {
+	var save_dict = {
 		'droidsLostHighscore': droidsLostHighscore,
 		'asteroidsQuantityHighscore':asteroidsQuantityHighscore
-    }
-    return save_dict
+	}
+	return save_dict
 	
 onready var root: = get_tree().get_root()
+onready var me: = $'.'
 onready var scenesRoot: = root.get_node('ScenesRoot')
 var current_scene = null
 
@@ -59,7 +58,7 @@ func resetCurrentHighscore():
 const MainMenuScene: = preload('res://ui/MainMenu.tscn')
 var _mainMenu: MainMenu 
 
-onready var _moonFlat: MainMenu = scenesRoot.get_node('MoonFlat')
+onready var _moonFlat: = scenesRoot.get_node('MoonFlat')
 
 func _ready():
 	saveLoadHelper.loadUiState(self)
@@ -70,31 +69,31 @@ func _ready():
 	compareHighscoresAndSetNew()
 
 func goto_scene(path):
-    # This function will usually be called from a signal callback,
-    # or some other function in the current scene.
-    # Deleting the current scene at this point is
-    # a bad idea, because it may still be executing code.
-    # This will result in a crash or unexpected behavior.
+	# This function will usually be called from a signal callback,
+	# or some other function in the current scene.
+	# Deleting the current scene at this point is
+	# a bad idea, because it may still be executing code.
+	# This will result in a crash or unexpected behavior.
 
-    # The solution is to defer the load to a later time, when
-    # we can be sure that no code from the current scene is running:
+	# The solution is to defer the load to a later time, when
+	# we can be sure that no code from the current scene is running:
 
 	call_deferred("_deferred_goto_scene", path)
 
 func _deferred_goto_scene(path):
-    # It is now safe to remove the current scene
+	# It is now safe to remove the current scene
 	current_scene.free()
 
-    # Load the new scene.
+	# Load the new scene.
 	var s = ResourceLoader.load(path)
 
-    # Instance the new scene.
+	# Instance the new scene.
 	current_scene = s.instance()
 
-    # Add it to the active scene, as child of root.
+	# Add it to the active scene, as child of root.
 	scenesRoot.add_child(current_scene)
 
-    # Optionally, to make it compatible with the SceneTree.change_scene() API.
+	# Optionally, to make it compatible with the SceneTree.change_scene() API.
 	get_tree().set_current_scene(current_scene)
 
 
@@ -161,5 +160,14 @@ func restartgame()->void:
 	resetCurrentHighscore()
 	goto_scene('res://levels/MoonFlat.tscn')
 
+const _placeSelectorScene: = preload("res://objects/selectors/PlaceSelector.tscn")
+var _placeSelector: PlaceSelector
 
-	
+var _is_building_selector_active: bool = false setget set_is_building_selector_active
+func set_is_building_selector_active(isActive:bool)->void:
+	_is_building_selector_active = isActive
+	if isActive and not is_instance_valid(_placeSelector):
+		_placeSelector = _placeSelectorScene.instance()
+		me.add_child(_placeSelector)
+	elif is_instance_valid(_placeSelector):
+		_placeSelector.queue_free()

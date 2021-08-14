@@ -49,11 +49,12 @@ static func _instance_resource(id: float, name: String, mass: float)->BaseResour
 	unknownResourse = _set_health(unknownResourse, mass)
 	return unknownResourse
 	
-static func _set_health(resourceComponent: BaseResourceComponent, mass: float)->BaseResourceComponent:
+static func _set_health(resourceComponent: BaseResourceComponent, mass_kg: float)->BaseResourceComponent:
 	randomize()
 	var max_health : float = 1000
-	if mass != null and mass != 0:
-		max_health = mass
-	resourceComponent.origin_health = rand_range(1, mass)
+	if mass_kg != null and mass_kg != 0:
+		max_health = mass_kg
+	resourceComponent.origin_health = rand_range(1, mass_kg)
 	resourceComponent.current_health = resourceComponent.origin_health
+	resourceComponent.mass_kg = mass_kg
 	return resourceComponent

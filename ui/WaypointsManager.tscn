@@ -96,11 +96,13 @@ margin_top = 156.0
 margin_right = 171.0
 margin_bottom = 176.0
 text = "Reboot Power"
-
 [connection signal="mouse_entered" from="." to="." method="_on_WaypointsManager_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_WaypointsManager_mouse_exited"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/CloseBtn" to="." method="_on_CloseBtn_button_up"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/Orbit" to="." method="_on_Orbit_gui_input"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Orbit/OrbitCheckBtn" to="." method="_on_OrbitCheckBtn_button_up"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/Platform" to="." method="_on_Platform_gui_input"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Platform/PlatformCheckBtn" to="." method="_on_PlatformCheckBtn_button_up"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/Landing" to="." method="_on_Landing_gui_input"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Landing/LandingCheckBtn" to="." method="_on_LandingCheckBtn_button_up"]
 [connection signal="button_up" from="MarginContainer/VBoxContainer/RebootPower" to="." method="_on_RebootPower_button_up"]

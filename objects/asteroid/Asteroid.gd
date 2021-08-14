@@ -7,6 +7,12 @@ export var DISTANCE_THRESHOLD: = 3.0
 export var mass: = 30.0
 export var mass_max: = 300.0
 
+func _ready():
+	randomize()
+	mass = rand_range( 1,  mass_max)
+	var mass_ratio = mass / mass_max 
+	self.scale = Vector2(mass_ratio,mass_ratio) 
+
 # !!! must be filled with base resourse components !!!
 var health_damage_system: HealthDamageSystem = HealthDamageSystem.new()
 func reduce_health(points: float) -> void:

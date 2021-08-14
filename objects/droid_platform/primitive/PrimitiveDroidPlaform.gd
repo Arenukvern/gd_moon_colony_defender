@@ -29,3 +29,20 @@ func _on_PrimitiveDroidPlatform_mouse_entered() -> void:
 
 func _on_PrimitiveDroidPlatform_mouse_exited() -> void:
 	isMouseOver =false
+
+func _ready():
+	acceleration_for_landing = 150
+	_acceleration_current = acceleration_for_landing
+
+func _physics_process(delta):
+	move_droid()
+
+func move_droid()->void:
+	
+	_velocity = Steering.follow(
+		_velocity,
+		global_position,
+		target_global_position,
+		_acceleration_current
+	)
+	_velocity = move_and_slide(_velocity)

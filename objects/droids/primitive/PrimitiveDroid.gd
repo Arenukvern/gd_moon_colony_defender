@@ -2,18 +2,10 @@ extends Droid
 
 class_name PrimitiveDroid
 
-export var acceleration_for_landing: = 20.0
-export var acceleration_initial: = 100.0
+
 export var acceleration_explosive_min: = 300.0
 export var acceleration_explosive_max: = 400.0
-# current acceleration
-var _acceleration_current: = 0.0
-# current random acceleration when player can risk to run plasma
-# but it can exlosure if the acceleration_current will be more than
-# critical
-var _acceleration_explosition: = 0.0
-# distance between target position and current position 
-# droid should stop
+
 
 export var DISTANCE_LANDING_THRESHOLD: = 50.0
 
@@ -133,7 +125,7 @@ func _connect_waypoints_manager()->void:
 
 func _on_reboot_droids_power()->void:
 	self.is_all_equipment_enabled = false
-	if fuel_left > 0:
+	if self.fuel_left > 0:
 		target_global_position = platform_global_position
 		_acceleration_current = acceleration_initial
 		
@@ -161,42 +153,22 @@ func _on_waypoint_selected(arg)->void:
 				
 			landing_global_position = waypointPosition
 #	rebuild ui waypoints
+	_reposition_waypoints_array()
 	self.are_all_waypoints_shown = true
-	
-
-export var are_all_waypoints_shown: bool = false setget set_are_all_waypoints_shown
-func set_are_all_waypoints_shown(isEnable: bool)->void:
-	are_all_waypoints_shown= isEnable
-	clear_all_waypoints()
-	if isEnable:
-		for waypoint in self.waypoints_array:
-			var selection: Node = waypoint.waypoint_scene.instance()
-			selection.global_position = waypoint.global_position
-			projectRoot.add_child(selection)
-			_waypoints_selections_array.push_back(selection)
-
-func clear_all_waypoints():
-	for selection in _waypoints_selections_array:
-		if is_instance_valid(selection):
-			selection.queue_free()
-	_waypoints_selections_array.clear()
-
-var _waypoints_selections_array: Array = []
-
-
 
 onready var orbitWaypoint = WaypointGd.new()
 onready var landingWaypoint = WaypointGd.new()
 
-var waypoints_array: Array = [] setget ,get_waypoints_array
-func get_waypoints_array()-> Array:
-	platformWaypoint.global_position = platform_global_position
+func _populate_waypoints_array()-> void:
 	platformWaypoint.waypoint_scene = WaypointFactory.purple
-	orbitWaypoint.global_position = orbit_global_position
 	orbitWaypoint.waypoint_scene = WaypointFactory.red
-	landingWaypoint.global_position = landing_global_position
 	landingWaypoint.waypoint_scene = WaypointFactory.yellow
-	return [platformWaypoint, orbitWaypoint, landingWaypoint]
+	_reposition_waypoints_array()
+	_waypoints_array = [platformWaypoint, orbitWaypoint, landingWaypoint]
+func _reposition_waypoints_array()-> void:
+	platformWaypoint.global_position = platform_global_position
+	orbitWaypoint.global_position = orbit_global_position
+	landingWaypoint.global_position = landing_global_position
 
 # PATH
 
@@ -233,22 +205,25 @@ func get_is_all_equipment_enabled()->bool:
 
 func _ready() -> void:
 	randomize()
-	mass_kg = 10
+	self.mass_capacity_kg = 10
 	_acceleration_explosition = rand_range(acceleration_explosive_min, acceleration_explosive_max)
 	landing_global_position =  Vector2(rand_range(10, _screen_dimension.x),_screen_dimension.y)
 	global_position = initial_position
 	_previous_global_position = initial_position
 	_acceleration_current = acceleration_initial
 	_init_healthComponents()
+	_populate_waypoints_array()
+	self.fuel_left = self.fuel_capacity
+
 
 
 func _physics_process(delta: float) -> void:
 	if _acceleration_current >= _acceleration_explosition: 
-		queue_free()
+		self.reduce_health(self.health_damage_system.health)
 #		TODO: make explosition
 	
 	if not is_drop_droid:
-		if fuel_left <= 0 && not debug_is_fuel_infinite:
+		if self.fuel_left <= 0 && not debug_is_fuel_infinite:
 			_drop_droid()
 			return
 		elif self.is_droid_in_orbit:
@@ -266,7 +241,7 @@ func _physics_process(delta: float) -> void:
 		
 		_eat_tractor_beam_fuel()
 		
-		if fuel_left > 0 && is_tractor_beam_enabled:
+		if self.fuel_left > 0 && is_tractor_beam_enabled:
 			_sync_tractor_beam_object_velocity()
 	
 	if self.is_in_movement:
@@ -295,7 +270,7 @@ func _recalculate_distances_and_eat_fuel()->void:
 	var dx: float = global_position.x - _previous_global_position.x
 	var dy: float = global_position.y - _previous_global_position.y
 	var distance: float = round(sqrt(dx*dx + dy*dy))
-	fuel_left -= distance * fuel_flying_consumption
+	self.fuel_left -= distance * fuel_flying_consumption
 	_total_flying_distance += distance
 	_previous_global_position = global_position
 
@@ -313,9 +288,9 @@ func _to_land_droid()->void:
 	target_global_position = landing_global_position
 	
 func _eat_idle_fuel()-> void:
-	fuel_left -= idle_fuel_consumption
+	self.fuel_left -= idle_fuel_consumption
 	if self.is_short_range_sensor_enabled:
-		fuel_left -= _sensorFuelConsumption
+		self.fuel_left -= _sensorFuelConsumption
 
 func _sync_tractor_beam_object_velocity()->void:
 	for tractorObject in tractor_beam_objects:
@@ -343,12 +318,12 @@ func _eat_tractor_beam_fuel():
 				var asteroidMass: float = tractorObject.get('mass')
 				totalAseroidMass += asteroidMass
 
-		fuel_left -= _tractorBeamFuelConsumption + TractorBeam.calculate_fuel_consumtion_for_mass(totalAseroidMass)
+		self.fuel_left -= _tractorBeamFuelConsumption + TractorBeam.calculate_fuel_consumtion_for_mass(totalAseroidMass)
 	
 func _check_and_return_to_refuel() -> void:
 # if we have an asteroid catched we cannot return 
 # to base, as we need to land it first
-	if fuel_left <= 0:
+	if self.fuel_left <= 0:
 		return 
 	elif not is_goto_platform_to_refuel_in_any_cases and self.is_tractor_beam_has_objects:
 		return 
@@ -361,18 +336,18 @@ func _check_and_return_to_refuel() -> void:
 #	fuel it will take
 	var distanceToPlatform = global_position.distance_to(platform_global_position)
 	var expectedFuelConsumption = distanceToPlatform * fuel_flying_consumption
-	if fuel_left <= expectedFuelConsumption + fuel_reserve_limit:
+	if self.fuel_left <= expectedFuelConsumption + fuel_reserve_limit:
 #		reroute to platform
 		self.is_all_equipment_enabled = false
 		target_global_position = platform_global_position
 		_acceleration_current = acceleration_initial
 
 func _refuel_droid() -> void:
-	if fuel_left >= fuel_capacity:
-		fuel_left = fuel_capacity
+	if self.fuel_left >= fuel_capacity:
+		self.fuel_left = fuel_capacity
 		_goto_orbit()
 	else:
-		fuel_left += refueling_consumption
+		self.fuel_left += refueling_consumption
 
 func _goto_orbit() -> void:
 	target_global_position = orbit_global_position

@@ -33,7 +33,6 @@ margin_right = 261.0
 margin_bottom = 108.0
 
 [node name="SpawnAsteroidsQuantity" type="HBoxContainer" parent="MenuOverlay/MarginContainer/VBoxContainer"]
-editor/display_folded = true
 margin_right = 261.0
 margin_bottom = 24.0
 custom_constants/separation = 25
@@ -53,7 +52,6 @@ value = 1.0
 script = ExtResource( 2 )
 
 [node name="AsteroidsStartMaxDistance" type="HBoxContainer" parent="MenuOverlay/MarginContainer/VBoxContainer"]
-editor/display_folded = true
 margin_top = 28.0
 margin_right = 261.0
 margin_bottom = 52.0
@@ -74,7 +72,6 @@ value = 1.0
 script = ExtResource( 3 )
 
 [node name="AsteroidsSpawnTime" type="HBoxContainer" parent="MenuOverlay/MarginContainer/VBoxContainer"]
-editor/display_folded = true
 margin_top = 56.0
 margin_right = 261.0
 margin_bottom = 80.0
@@ -113,7 +110,6 @@ min_value = 1.0
 max_value = 9999.0
 value = 1.0
 script = ExtResource( 5 )
-
 [connection signal="button_up" from="MenuOverlay/CloseButton" to="MenuOverlay/CloseButton" method="_on_CloseButton_button_up"]
 [connection signal="value_changed" from="MenuOverlay/MarginContainer/VBoxContainer/SpawnAsteroidsQuantity/SpawnAsteroidsQuantityInput" to="MenuOverlay/MarginContainer/VBoxContainer/SpawnAsteroidsQuantity/SpawnAsteroidsQuantityInput" method="_on_SpawnAsteroidsQuantityInput_value_changed"]
 [connection signal="value_changed" from="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsStartMaxDistance/AsteroidsStartMaxDistanceInput" to="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsStartMaxDistance/AsteroidsStartMaxDistanceInput" method="_on_AsteroidsStartMaxDistanceInput_value_changed"]

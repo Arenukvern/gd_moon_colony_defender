@@ -81,3 +81,13 @@ func closeSelected()->void:
 
 func _on_RebootPower_button_up() -> void:
 	emit_signal(signal_name_reboot_droids_power)
+
+
+func _on_PlatformCheckBtn_button_up():
+	self.selectedPositionType = WaypointFactory.PositionType.PLATFORM
+
+func _on_OrbitCheckBtn_button_up():
+	self.selectedPositionType = WaypointFactory.PositionType.ORBIT
+
+func _on_LandingCheckBtn_button_up():
+	self.selectedPositionType = WaypointFactory.PositionType.LANDING

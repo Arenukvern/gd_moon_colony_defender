@@ -31,7 +31,7 @@ func _ready() -> void:
 		droidsState.signal_func_name_droids_on_air_updated
 	)
 	_on_droids_on_air_updated()
-	
+
 func _on_droids_on_air_updated()->void:
 	droidsLimitLabel.text = 'Droids on air: %s / %s' % [droidsState.currentDroidsQuantity, droidsState.maxDroidsQuantity]
 		

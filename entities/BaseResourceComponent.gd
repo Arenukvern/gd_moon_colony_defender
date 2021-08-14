@@ -9,3 +9,4 @@ var resource_name: String = ''
 var current_health: float = 0.0
 # max health of resource
 var origin_health: float = 100.0
+var mass_kg: float = 1.0

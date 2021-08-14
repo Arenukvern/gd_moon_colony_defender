@@ -40,7 +40,6 @@ valign = 1
 autowrap = true
 
 [node name="TitleContainer" type="VBoxContainer" parent="."]
-editor/display_folded = true
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -109.0
@@ -50,16 +49,16 @@ margin_bottom = 231.0
 
 [node name="TitleLabel" type="Label" parent="TitleContainer"]
 margin_right = 218.0
-margin_bottom = 31.0
+margin_bottom = 24.0
 size_flags_vertical = 3
 text = "MOON DEFENCE"
 align = 1
 valign = 1
 
 [node name="Xsoulspace" type="Label" parent="TitleContainer"]
-margin_top = 35.0
+margin_top = 28.0
 margin_right = 218.0
-margin_bottom = 56.0
+margin_bottom = 44.0
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 4 )
 text = "by xsoulspace"
@@ -130,7 +129,6 @@ margin_right = 286.0
 margin_bottom = 576.0
 rect_min_size = Vector2( 400, 300 )
 theme = ExtResource( 1 )
-
 [connection signal="button_up" from="ButtonsContainer/ContinueButton" to="." method="_on_ContinueButton_button_up"]
 [connection signal="button_up" from="ButtonsContainer/Plot" to="." method="_on_Plot_button_up"]
 [connection signal="button_up" from="ButtonsContainer/HighscoreButton" to="." method="_on_HighscoreButton_button_up"]

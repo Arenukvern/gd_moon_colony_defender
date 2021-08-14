@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="0 0 62.76 43.7"
+   version="1.1"
+   id="svg1123"
+   sodipodi:docname="DroidPlatform.svg"
+   inkscape:export-filename="/home/antonio/gd_moon_colony_defender/assets/elements/DroidPlatform.png"
+   inkscape:export-xdpi="96.199997"
+   inkscape:export-ydpi="96.199997"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)">
+  <metadata
+     id="metadata1127">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="866"
+     inkscape:window-height="480"
+     id="namedview1125"
+     showgrid="false"
+     inkscape:zoom="3.760357"
+     inkscape:cx="31.379999"
+     inkscape:cy="21.85"
+     inkscape:window-x="592"
+     inkscape:window-y="180"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg1123" />
+  <defs
+     id="defs1101">
+    <style
+       id="style1099">.cls-1{fill:#e8e9de;stroke-width:0.25px;}.cls-1,.cls-2{stroke:#1c1e1d;stroke-miterlimit:10;}.cls-2{fill:#5a4e42;stroke-width:0.2px;}.cls-3{fill:#1c1e1d;}</style>
+  </defs>
+  <title
+     id="title1103">DroidPlatform</title>
+  <g
+     id="Layer_2"
+     data-name="Layer 2">
+    <g
+       id="DroidPlatform">
+      <rect
+         class="cls-1"
+         x="13.87"
+         y="0.13"
+         width="35.01"
+         height="36.35"
+         rx="3"
+         ry="3"
+         id="rect1105" />
+      <circle
+         class="cls-2"
+         cx="24.28"
+         cy="10.65"
+         r="4.78"
+         transform="matrix(0.99, -0.15, 0.15, 0.99, -1.29, 3.66)"
+         id="circle1107" />
+      <path
+         class="cls-3"
+         d="M11,16.67a13.39,13.39,0,0,1,1.32,2.71C11.39,22.31,6.93,36.61,5,41.66,4.65,42.44,5,43,6.22,43c.47,0,.36.27,0,.35a14.12,14.12,0,0,1-6.17,0s-.1-.08,0-.12c.85-.36,1.67.18,2.47-1.73L10.37,18A6.22,6.22,0,0,1,11,16.67Z"
+         id="path1109" />
+      <circle
+         class="cls-3"
+         cx="11.1"
+         cy="17.49"
+         r="2.15"
+         id="circle1111" />
+      <rect
+         class="cls-3"
+         x="10.88"
+         y="16.33"
+         width="2.99"
+         height="2.77"
+         id="rect1113" />
+      <path
+         class="cls-3"
+         d="M51.78,16.48a13.39,13.39,0,0,0-1.32,2.71c.91,2.93,5.37,17.24,7.34,22.28.3.78,0,1.33-1.27,1.38-.47,0-.36.27,0,.35a14.12,14.12,0,0,0,6.17,0s.1-.08,0-.12c-.85-.36-1.67.18-2.47-1.73L52.39,17.78A6.22,6.22,0,0,0,51.78,16.48Z"
+         id="path1115" />
+      <circle
+         class="cls-3"
+         cx="51.66"
+         cy="17.3"
+         r="2.15"
+         id="circle1117" />
+      <rect
+         class="cls-3"
+         x="48.88"
+         y="16.14"
+         width="2.99"
+         height="2.77"
+         transform="translate(100.76 35.05) rotate(180)"
+         id="rect1119" />
+    </g>
+  </g>
+</svg>

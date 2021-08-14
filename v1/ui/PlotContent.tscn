@@ -1,0 +1,23 @@
+[gd_scene format=2]
+
+[node name="PlotContent" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 133.0
+text = "You are a space science engineer.
+Once, you look up to the Earth sky and thought:
+- Why we always shooting, exploding, trying to kill all unknown, like barbarians centuries and centuries ago?
+- Who knows, maybe in this asteroid or in piece of it, can be lyfe, just not the same life as we looking.
+- What can I do to really start act as Human, and not from drilling and crashing all around, but carefully testing and studing first?
+
+And then, you started experiment Moon Defence.
+The experiment, that purpose to scientifically defence moon setlement, catch asteroids and go to study unknown."
+autowrap = true
+

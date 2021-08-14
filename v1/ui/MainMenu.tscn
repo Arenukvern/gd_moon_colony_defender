@@ -1,0 +1,136 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui/theme/Theme24.tres" type="Theme" id=1]
+[ext_resource path="res://ui/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://assets/backgrounds/benjamin-voros-U-Kty6HxcQc-unsplash.jpg" type="Texture" id=3]
+[ext_resource path="res://ui/font/Font16.tres" type="DynamicFont" id=4]
+[ext_resource path="res://ui/Buttons/MainMenuButton.tscn" type="PackedScene" id=5]
+
+[node name="MainMenu" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="benjamin-voros-U-Kty6HxcQc-unsplash" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="PhotoCopyright" type="Label" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -39.0
+margin_right = 441.0
+custom_fonts/font = ExtResource( 4 )
+text = "Photo by Benjamin Voros on Unsplash"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Idea" type="Label" parent="."]
+margin_top = 22.0
+margin_right = 441.0
+margin_bottom = 67.0
+custom_fonts/font = ExtResource( 4 )
+text = "Have an idea or bug or want to contribute - left a message to instagram xsoulspace or idea@xsoulspace.dev !"
+valign = 1
+autowrap = true
+
+[node name="TitleContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -109.0
+margin_top = 191.0
+margin_right = 109.0
+margin_bottom = 231.0
+
+[node name="TitleLabel" type="Label" parent="TitleContainer"]
+margin_right = 218.0
+margin_bottom = 24.0
+size_flags_vertical = 3
+text = "MOON DEFENCE"
+align = 1
+valign = 1
+
+[node name="Xsoulspace" type="Label" parent="TitleContainer"]
+margin_top = 28.0
+margin_right = 218.0
+margin_bottom = 44.0
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 4 )
+text = "by xsoulspace"
+align = 1
+valign = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -108.0
+margin_top = -273.0
+margin_right = 109.0
+margin_bottom = -39.0
+custom_constants/separation = 6
+
+[node name="ContinueButton" type="Button" parent="ButtonsContainer"]
+margin_right = 217.0
+margin_bottom = 34.0
+size_flags_vertical = 3
+text = "Continue"
+
+[node name="RestartMissionButton2" parent="ButtonsContainer" instance=ExtResource( 5 )]
+margin_top = 40.0
+margin_right = 217.0
+margin_bottom = 74.0
+text = "Restart Mission"
+next_scene_path = "res://levels/MoonFlat.tscn"
+
+[node name="Plot" type="Button" parent="ButtonsContainer"]
+margin_top = 80.0
+margin_right = 217.0
+margin_bottom = 114.0
+size_flags_vertical = 3
+text = "Plot"
+
+[node name="HighscoreButton" type="Button" parent="ButtonsContainer"]
+margin_top = 120.0
+margin_right = 217.0
+margin_bottom = 154.0
+size_flags_vertical = 3
+text = "Results"
+
+[node name="HelpButton" type="Button" parent="ButtonsContainer"]
+margin_top = 160.0
+margin_right = 217.0
+margin_bottom = 194.0
+size_flags_vertical = 3
+text = "Help"
+
+[node name="ExitButton" type="Button" parent="ButtonsContainer"]
+margin_top = 200.0
+margin_right = 217.0
+margin_bottom = 234.0
+size_flags_vertical = 3
+text = "Exit"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WindowDialog" type="WindowDialog" parent="CanvasLayer"]
+modulate = Color( 0.760784, 0.85098, 0.933333, 0.92549 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -256.0
+margin_top = 40.0
+margin_right = 286.0
+margin_bottom = 576.0
+rect_min_size = Vector2( 400, 300 )
+theme = ExtResource( 1 )
+[connection signal="button_up" from="ButtonsContainer/ContinueButton" to="." method="_on_ContinueButton_button_up"]
+[connection signal="button_up" from="ButtonsContainer/Plot" to="." method="_on_Plot_button_up"]
+[connection signal="button_up" from="ButtonsContainer/HighscoreButton" to="." method="_on_HighscoreButton_button_up"]
+[connection signal="button_up" from="ButtonsContainer/HelpButton" to="." method="_on_HelpButton_button_up"]
+[connection signal="button_up" from="ButtonsContainer/ExitButton" to="." method="_on_ExitButton_button_up"]

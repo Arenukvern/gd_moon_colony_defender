@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ui/theme/Theme24.tres" type="Theme" id=1]
+[ext_resource path="res://ui/Buttons/OpenMenuButton.gd" type="Script" id=2]
+
+[node name="OpenMenuButton" type="Button"]
+margin_right = 167.0
+margin_bottom = 41.0
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+text = "Menu"
+script = ExtResource( 2 )
+
+[connection signal="button_up" from="." to="." method="_on_OpenMenuButton_button_up"]

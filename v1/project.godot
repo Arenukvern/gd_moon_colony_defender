@@ -1,0 +1,188 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Asteroid",
+"language": "GDScript",
+"path": "res://objects/asteroid/Asteroid.gd"
+}, {
+"base": "Node",
+"class": "AsteroidsFactory",
+"language": "GDScript",
+"path": "res://objects/asteroid/AsteroidFactory.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BaseDroidModule",
+"language": "GDScript",
+"path": "res://objects/BaseDroidModule.gd"
+}, {
+"base": "Node",
+"class": "BaseResourceComponent",
+"language": "GDScript",
+"path": "res://entities/BaseResourceComponent.gd"
+}, {
+"base": "Node",
+"class": "BaseResourceFactory",
+"language": "GDScript",
+"path": "res://entities/BaseResourceFactory.gd"
+}, {
+"base": "Node",
+"class": "BuildingFactory",
+"language": "GDScript",
+"path": "res://objects/BuildingFactory.gd"
+}, {
+"base": "Node",
+"class": "DictionaryHelper",
+"language": "GDScript",
+"path": "res://helpers/DictionaryHelper.gd"
+}, {
+"base": "BaseDroidModule",
+"class": "Droid",
+"language": "GDScript",
+"path": "res://objects/droids/Droid.gd"
+}, {
+"base": "Area2D",
+"class": "DroidSelection",
+"language": "GDScript",
+"path": "res://objects/droids/primitive/DroidSelection.gd"
+}, {
+"base": "Node",
+"class": "DroidsFactory",
+"language": "GDScript",
+"path": "res://objects/droids/DroidsFactory.gd"
+}, {
+"base": "Node",
+"class": "HealthDamageSystem",
+"language": "GDScript",
+"path": "res://objects/HealthDamageSystem.gd"
+}, {
+"base": "Asteroid",
+"class": "IceWateredAsteroid",
+"language": "GDScript",
+"path": "res://objects/asteroid/ice_watered/IceWateredAsteroid.gd"
+}, {
+"base": "Node",
+"class": "InputHelper",
+"language": "GDScript",
+"path": "res://helpers/InputHelper.gd"
+}, {
+"base": "Control",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://ui/MainMenu.gd"
+}, {
+"base": "Area2D",
+"class": "PlaceSelector",
+"language": "GDScript",
+"path": "res://objects/selectors/PlaceSelector.gd"
+}, {
+"base": "Droid",
+"class": "PrimitiveDroid",
+"language": "GDScript",
+"path": "res://objects/droids/primitive/PrimitiveDroid.gd"
+}, {
+"base": "Control",
+"class": "RoverActions",
+"language": "GDScript",
+"path": "res://objects/rovers/RoverActions.gd"
+}, {
+"base": "Node",
+"class": "SaveLoadHelper",
+"language": "GDScript",
+"path": "res://helpers/SaveLoadHelper.gd"
+}, {
+"base": "Area2D",
+"class": "ShortRangeSensor",
+"language": "GDScript",
+"path": "res://objects/droids/primitive/ShortRangeSensor.gd"
+}, {
+"base": "Area2D",
+"class": "TractorBeam",
+"language": "GDScript",
+"path": "res://objects/droids/primitive/TractorBeam.gd"
+}, {
+"base": "Node",
+"class": "Waypoint",
+"language": "GDScript",
+"path": "res://objects/droids/Waypoint.gd"
+}, {
+"base": "Node",
+"class": "WaypointFactory",
+"language": "GDScript",
+"path": "res://objects/droids/WaypointFactory.gd"
+}, {
+"base": "Panel",
+"class": "WaypointsManager",
+"language": "GDScript",
+"path": "res://ui/WaypointsManager.gd"
+} ]
+_global_script_class_icons={
+"Asteroid": "",
+"AsteroidsFactory": "",
+"BaseDroidModule": "",
+"BaseResourceComponent": "",
+"BaseResourceFactory": "",
+"BuildingFactory": "",
+"DictionaryHelper": "",
+"Droid": "",
+"DroidSelection": "",
+"DroidsFactory": "",
+"HealthDamageSystem": "",
+"IceWateredAsteroid": "",
+"InputHelper": "",
+"MainMenu": "",
+"PlaceSelector": "",
+"PrimitiveDroid": "",
+"RoverActions": "",
+"SaveLoadHelper": "",
+"ShortRangeSensor": "",
+"TractorBeam": "",
+"Waypoint": "",
+"WaypointFactory": "",
+"WaypointsManager": ""
+}
+
+[application]
+
+config/name="Moon Defence"
+run/main_scene="res://levels/ScenesRoot.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+UIState="*res://autoload/states/UIState.tscn"
+PhisicsState="*res://autoload/states/PhisicsState.gd"
+Steering="*res://autoload/Steering.gd"
+BaseResourcesState="*res://autoload/states/BaseResourcesState.gd"
+AsteroidsState="*res://autoload/states/AsteroidsState.gd"
+DroidsState="*res://autoload/states/DroidsState.gd"
+WaypointsState="*res://autoload/states/WaypointsState.tscn"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[layer_names]
+
+2d_physics/layer_1="asteroids"
+2d_physics/layer_2="droids"
+2d_physics/layer_3="people"
+2d_physics/layer_4="buildings"
+2d_physics/layer_5="ground"
+2d_physics/layer_6="waypoints"
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"

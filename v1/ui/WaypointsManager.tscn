@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ui/WaypointsManager.gd" type="Script" id=1]
+
+[node name="WaypointsManager" type="Panel"]
+margin_right = 176.0
+margin_bottom = 176.0
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 171.0
+margin_bottom = 176.0
+alignment = 1
+
+[node name="CloseBtn" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_right = 171.0
+margin_bottom = 20.0
+text = "Close"
+
+[node name="Orbit" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 171.0
+margin_bottom = 64.0
+
+[node name="Red" type="ColorRect" parent="MarginContainer/VBoxContainer/Orbit"]
+margin_right = 3.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 3, 14 )
+color = Color( 0.65098, 0.101961, 0.282353, 1 )
+
+[node name="OrbitCheckBtn" type="CheckButton" parent="MarginContainer/VBoxContainer/Orbit"]
+margin_left = 7.0
+margin_right = 83.0
+margin_bottom = 40.0
+
+[node name="OrbitLabel" type="Label" parent="MarginContainer/VBoxContainer/Orbit"]
+margin_left = 87.0
+margin_top = 13.0
+margin_right = 120.0
+margin_bottom = 27.0
+text = "Orbit"
+
+[node name="Platform" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 171.0
+margin_bottom = 108.0
+
+[node name="Purple" type="ColorRect" parent="MarginContainer/VBoxContainer/Platform"]
+margin_right = 3.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 3, 14 )
+color = Color( 0.65098, 0.101961, 0.643137, 1 )
+
+[node name="PlatformCheckBtn" type="CheckButton" parent="MarginContainer/VBoxContainer/Platform"]
+margin_left = 7.0
+margin_right = 83.0
+margin_bottom = 40.0
+
+[node name="PlatformLabel" type="Label" parent="MarginContainer/VBoxContainer/Platform"]
+margin_left = 87.0
+margin_top = 13.0
+margin_right = 141.0
+margin_bottom = 27.0
+text = "Platform"
+
+[node name="Landing" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 171.0
+margin_bottom = 152.0
+
+[node name="Yellow" type="ColorRect" parent="MarginContainer/VBoxContainer/Landing"]
+margin_right = 3.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 3, 14 )
+color = Color( 0.709804, 0.666667, 0.152941, 1 )
+
+[node name="LandingCheckBtn" type="CheckButton" parent="MarginContainer/VBoxContainer/Landing"]
+margin_left = 7.0
+margin_right = 83.0
+margin_bottom = 40.0
+
+[node name="LandingLabel" type="Label" parent="MarginContainer/VBoxContainer/Landing"]
+margin_left = 87.0
+margin_top = 13.0
+margin_right = 136.0
+margin_bottom = 27.0
+text = "Landing"
+
+[node name="RebootPower" type="Button" parent="MarginContainer/VBoxContainer"]
+margin_top = 156.0
+margin_right = 171.0
+margin_bottom = 176.0
+text = "Reboot Power"
+[connection signal="mouse_entered" from="." to="." method="_on_WaypointsManager_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_WaypointsManager_mouse_exited"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/CloseBtn" to="." method="_on_CloseBtn_button_up"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/Orbit" to="." method="_on_Orbit_gui_input"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Orbit/OrbitCheckBtn" to="." method="_on_OrbitCheckBtn_button_up"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/Platform" to="." method="_on_Platform_gui_input"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Platform/PlatformCheckBtn" to="." method="_on_PlatformCheckBtn_button_up"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/Landing" to="." method="_on_Landing_gui_input"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Landing/LandingCheckBtn" to="." method="_on_LandingCheckBtn_button_up"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/RebootPower" to="." method="_on_RebootPower_button_up"]

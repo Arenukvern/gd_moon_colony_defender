@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ui_debug/CloseButton.gd" type="Script" id=1]
+[ext_resource path="res://ui_debug/SpawnAsteroidsQuantityInput.gd" type="Script" id=2]
+[ext_resource path="res://ui_debug/AsteroidsStartMaxDistanceInput.gd" type="Script" id=3]
+[ext_resource path="res://ui_debug/AsteroidsSpawnTimeInput.gd" type="Script" id=4]
+[ext_resource path="res://ui_debug/DroidsBuildsLimitInput.gd" type="Script" id=5]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="MenuOverlay" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.756863 )
+
+[node name="CloseButton" type="Button" parent="MenuOverlay"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -247.0
+margin_top = 20.0
+margin_bottom = 44.0
+text = "Close"
+script = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuOverlay"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 267.0
+margin_bottom = 44.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuOverlay/MarginContainer"]
+margin_right = 261.0
+margin_bottom = 108.0
+
+[node name="SpawnAsteroidsQuantity" type="HBoxContainer" parent="MenuOverlay/MarginContainer/VBoxContainer"]
+margin_right = 261.0
+margin_bottom = 24.0
+custom_constants/separation = 25
+
+[node name="SpawnAsteroidsQuantityLabel" type="Label" parent="MenuOverlay/MarginContainer/VBoxContainer/SpawnAsteroidsQuantity"]
+margin_top = 5.0
+margin_right = 161.0
+margin_bottom = 19.0
+text = "Asteroids spawn quantity"
+
+[node name="SpawnAsteroidsQuantityInput" type="SpinBox" parent="MenuOverlay/MarginContainer/VBoxContainer/SpawnAsteroidsQuantity"]
+margin_left = 186.0
+margin_right = 260.0
+margin_bottom = 24.0
+min_value = 1.0
+value = 1.0
+script = ExtResource( 2 )
+
+[node name="AsteroidsStartMaxDistance" type="HBoxContainer" parent="MenuOverlay/MarginContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 261.0
+margin_bottom = 52.0
+
+[node name="AsteroidsStartMaxDistanceLabel" type="Label" parent="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsStartMaxDistance"]
+margin_top = 5.0
+margin_right = 183.0
+margin_bottom = 19.0
+text = "Asteroids start max distance"
+
+[node name="AsteroidsStartMaxDistanceInput" type="SpinBox" parent="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsStartMaxDistance"]
+margin_left = 187.0
+margin_right = 261.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 9999.0
+value = 1.0
+script = ExtResource( 3 )
+
+[node name="AsteroidsSpawnTime" type="HBoxContainer" parent="MenuOverlay/MarginContainer/VBoxContainer"]
+margin_top = 56.0
+margin_right = 261.0
+margin_bottom = 80.0
+
+[node name="AsteroidsSpawnTimeLabel" type="Label" parent="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsSpawnTime"]
+margin_top = 5.0
+margin_right = 169.0
+margin_bottom = 19.0
+text = "Asteroids spawn time, sec"
+
+[node name="AsteroidsSpawnTimeInput" type="SpinBox" parent="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsSpawnTime"]
+margin_left = 173.0
+margin_right = 247.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 9999.0
+value = 1.0
+script = ExtResource( 4 )
+
+[node name="DroidsBuildsLimit" type="HBoxContainer" parent="MenuOverlay/MarginContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 261.0
+margin_bottom = 108.0
+
+[node name="DroidsBuildsLimitLabel" type="Label" parent="MenuOverlay/MarginContainer/VBoxContainer/DroidsBuildsLimit"]
+margin_top = 5.0
+margin_right = 127.0
+margin_bottom = 19.0
+text = "Droids Builds Limit "
+
+[node name="DroidsBuildsLimitInput" type="SpinBox" parent="MenuOverlay/MarginContainer/VBoxContainer/DroidsBuildsLimit"]
+margin_left = 131.0
+margin_right = 205.0
+margin_bottom = 24.0
+min_value = 1.0
+max_value = 9999.0
+value = 1.0
+script = ExtResource( 5 )
+[connection signal="button_up" from="MenuOverlay/CloseButton" to="MenuOverlay/CloseButton" method="_on_CloseButton_button_up"]
+[connection signal="value_changed" from="MenuOverlay/MarginContainer/VBoxContainer/SpawnAsteroidsQuantity/SpawnAsteroidsQuantityInput" to="MenuOverlay/MarginContainer/VBoxContainer/SpawnAsteroidsQuantity/SpawnAsteroidsQuantityInput" method="_on_SpawnAsteroidsQuantityInput_value_changed"]
+[connection signal="value_changed" from="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsStartMaxDistance/AsteroidsStartMaxDistanceInput" to="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsStartMaxDistance/AsteroidsStartMaxDistanceInput" method="_on_AsteroidsStartMaxDistanceInput_value_changed"]
+[connection signal="value_changed" from="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsSpawnTime/AsteroidsSpawnTimeInput" to="MenuOverlay/MarginContainer/VBoxContainer/AsteroidsSpawnTime/AsteroidsSpawnTimeInput" method="_on_AsteroidsSpawnTimeInput_value_changed"]
+[connection signal="value_changed" from="MenuOverlay/MarginContainer/VBoxContainer/DroidsBuildsLimit/DroidsBuildsLimitInput" to="MenuOverlay/MarginContainer/VBoxContainer/DroidsBuildsLimit/DroidsBuildsLimitInput" method="_on_DroidsBuildsLimitInput_value_changed"]

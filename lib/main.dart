@@ -53,7 +53,10 @@ class Platform extends PositionComponent
   @override
   bool onDragUpdate(int pointerId, DragUpdateInfo info) {
     x += info.delta.game.x;
-    return true;
+    if (gameRef.ball.isReset) {
+      gameRef.ball.launch();
+    }
+    return super.onDragUpdate(pointerId, info);
   }
 }
 
@@ -71,14 +74,53 @@ class Bg extends Component with HasGameRef<BreakoutGame> {
   int get priority => -1;
 }
 
+class Ball extends PositionComponent with HasGameRef<BreakoutGame> {
+  static const radius = 10.0;
+  static const speed = 500.0;
+
+  bool isReset = true;
+  Vector2 velocity = Vector2.zero();
+
+  @override
+  Future<void>? onLoad() {
+    anchor = Anchor.center;
+    position = gameRef.platform.position - Vector2(0, radius);
+    return super.onLoad();
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    canvas.drawCircle(Offset.zero, radius, _paintWhite);
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    final ds = velocity * dt;
+    position += ds;
+  }
+
+  void launch() {
+    velocity = Vector2(0.75, -1) * speed;
+    isReset = false;
+  }
+}
+
 class BreakoutGame extends BaseGame with HasDraggableComponents {
+  late Platform platform;
+  late Ball ball;
   @override
   Future<void> onLoad() async {
     camera.defaultShakeIntensity = 5;
     // viewport = FixedResolutionViewport(Vector2(640, 1280));
+    setup();
+  }
 
+  void setup() {
     add(Bg());
-    add(Platform());
+    add(platform = Platform());
+    add(ball = Ball());
     super.onLoad();
   }
 }

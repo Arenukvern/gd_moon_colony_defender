@@ -137,7 +137,28 @@ class Ball extends PositionComponent with HasGameRef<BreakoutGame> {
     } else if (position.y > gameRef.size.y) {
       gameRef.onLose();
     } else {
-      // TODO:
+      final previousRect = (position - ds) & size;
+      final effectiveCollisionBounds = toRect().expandToInclude(previousRect);
+      final intersects =
+          gameRef.platform.toRect().intersect(effectiveCollisionBounds);
+      if (!intersects.isEmpty) {
+        position.y = gameRef.platform.position.y - radius;
+        velocity.multiply(Vector2(1, -1));
+        velocity += gameRef.platform.averageVelocity / 10;
+      } else {
+        final boxes = gameRef.components.whereType<Crate>();
+        bool firstBox = true;
+        for (final box in boxes) {
+          final collision = box.toRect().intersect(effectiveCollisionBounds);
+          if (!collision.isEmpty) {
+            if (firstBox) {
+              velocity.multiply(Vector2(1, -1));
+              firstBox = false;
+            }
+            box.remove();
+          }
+        }
+      }
     }
   }
 

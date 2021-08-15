@@ -60,6 +60,28 @@ class Platform extends PositionComponent
   }
 }
 
+class Crate extends PositionComponent {
+  static final _paintrow1 = Paint()..color = Color(0xFFE22349);
+  static final _paintrow2 = Paint()..color = Color(0xFFFF2600);
+  static final _paintrow3 = Paint()..color = Color(0xFFFF5300);
+  static final _paintrow4 = Paint()..color = Color(0xFFFFC100);
+  static final _paints = [_paintrow1, _paintrow2, _paintrow3, _paintrow4];
+  static final crateSize = Vector2(100, 26);
+
+  final int rowIndex;
+
+  Crate({required Vector2 position, required this.rowIndex}) {
+    this.position = position;
+    size = crateSize;
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+    canvas.drawRect(size.toRect(), _paints[rowIndex ~/ 2]);
+  }
+}
+
 class Bg extends Component with HasGameRef<BreakoutGame> {
   @override
   void render(Canvas c) {
@@ -131,15 +153,33 @@ class BreakoutGame extends BaseGame with HasDraggableComponents {
   @override
   Future<void> onLoad() async {
     camera.defaultShakeIntensity = 5;
-    // viewport = FixedResolutionViewport(Vector2(640, 1280));
+    viewport = FixedResolutionViewport(Vector2(640, 1280));
     setup();
+    super.onLoad();
   }
 
-  onLose() {}
+  void onLose() {}
   void setup() {
     add(Bg());
     add(platform = Platform());
     add(ball = Ball());
-    super.onLoad();
+    createCrates();
+  }
+
+  void createCrates() {
+    final grid = Vector2(5, 8);
+    final margin = Vector2(5, 5);
+
+    final unitWidth = Crate.crateSize + margin;
+    final totalDimensions = grid.clone()..multiply(unitWidth);
+    final start = ((size - totalDimensions) / 2)..y = 100.0;
+
+    for (var i = 0; i < grid.x; i++) {
+      for (var j = 0; j < grid.y; j++) {
+        final position =
+            start + (Vector2Extension.fromInts(i, j)..multiply(unitWidth));
+        add(Crate(position: position, rowIndex: j));
+      }
+    }
   }
 }

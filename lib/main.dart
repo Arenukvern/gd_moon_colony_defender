@@ -99,10 +99,28 @@ class Ball extends PositionComponent with HasGameRef<BreakoutGame> {
     super.update(dt);
     final ds = velocity * dt;
     position += ds;
+
+    if (position.x < 0) {
+      position.x = 0;
+      velocity.multiply(Vector2(-1, 1));
+      gameRef.camera.shake(intensity: .15);
+    } else if (position.x > gameRef.size.x) {
+      position.x = gameRef.size.x;
+      velocity.multiply(Vector2(-1, 1));
+      gameRef.camera.shake(intensity: .15);
+    } else if (position.y < 0) {
+      position.y = 0;
+      velocity.multiply(Vector2(1, -1));
+      gameRef.camera.shake(intensity: .15);
+    } else if (position.y > gameRef.size.y) {
+      gameRef.onLose();
+    } else {
+      // TODO:
+    }
   }
 
   void launch() {
-    velocity = Vector2(0.75, -1) * speed;
+    velocity = Vector2(.75, -1) * speed;
     isReset = false;
   }
 }
@@ -117,6 +135,7 @@ class BreakoutGame extends BaseGame with HasDraggableComponents {
     setup();
   }
 
+  onLose() {}
   void setup() {
     add(Bg());
     add(platform = Platform());
